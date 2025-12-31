@@ -81,9 +81,10 @@ spec:
             nodeSelectorTerms:
               - matchExpressions:
                   - key: {{ .Values.mysql.affinity.key | quote }}
-                    operator: {{ .Values.mysql.affinity.operator }}
                     values:
-                    - {{ .Chart.Name }}
+                    {{- range .Values.mysql.affinity.values }}
+                    - {{ . }}
+                    {{- end }}
   volumeClaimTemplates:
   - metadata:
       name: {{ .Values.mysql.volumeMounts.data.name }}
