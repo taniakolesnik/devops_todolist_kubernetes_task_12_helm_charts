@@ -5,7 +5,6 @@ metadata:
   name: {{ .Chart.Name }}
   namespace: {{ .Chart.Name }}
 spec:
-  volumeName: {{ .Chart.Name }}
   accessModes:
     - ReadWriteMany
   resources:
