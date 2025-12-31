@@ -1,4 +1,6 @@
 mysql:
+  namespace: mysql
+
   image:
     repository: mysql
     version: 8.0
@@ -15,12 +17,14 @@ mysql:
     key: "app"
     operator: In
     topologyKey: "kubernetes.io/hostname"
+    values:
+    - mysql
 
   tolerations:
     key: "app"
     effect: "NoSchedule"
     operator: Equal
-
+    value: mysql
 
   volumeClaimTemplates:
     resources:
@@ -38,5 +42,8 @@ mysql:
 
   resources:
     requests:
+      cpu: 500m
+      memory: 1Gi
+    limits:
       cpu: 500m
       memory: 1Gi
